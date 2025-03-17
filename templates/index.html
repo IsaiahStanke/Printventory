@@ -6,38 +6,8 @@
     <title>Toner Inventory Management</title>
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
 </head>
-<body class="bg-gray-100 text-gray-900">
-    <div class="container mx-auto p-6">
-        <header class="flex justify-between items-center bg-white shadow-lg p-4 rounded-lg">
-            <h1 class="text-2xl font-bold">Toner Inventory</h1>
-            <button class="btn-primary">Add Toner</button>
-        </header>
-        
-        <main class="mt-6">
-            <div class="card">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Toner Model</th>
-                            <th>Serial Number</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="toner-list">
-                        <tr>
-                            <td>HP 85A</td>
-                            <td>SN123456</td>
-                            <td class="status-in-stock">In Stock</td>
-                            <td>
-                                <button class="btn-warning">Check Out</button>
-                                <button class="btn-danger">Remove</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
+<body>
+    <a href="{{url_for('login')}}">Login Page</a><br>
+    <a href="{{url_for('register')}}">Register</a>
 </body>
 </html>

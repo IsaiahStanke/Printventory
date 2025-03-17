@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static\css\login.css">
     <title>Login</title>
 </head>
 <body>
-    <h1>Login Page</h1>
+    
+    <div class="card">
+        <h2 id="ad1">Login</h2>
+        <form action="/login" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+            <a id="ad2" href="{{url_for('register')}}">Register</a>
+        </form>
+    </div>
+    
+
 </body>
 </html>
