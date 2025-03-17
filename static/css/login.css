@@ -1,67 +1,60 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    background: linear-gradient(to bottom, #3b82f6, #b3c7f9);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    margin: 0;
 }
 
 .container {
-    max-width: 400px;
+    display: flex;
+    width: 800px;
     background: white;
-    padding: 40px;
-    border-radius: 12px;
+    border-radius: 20px;
+    overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-panel {
+    width: 50%;
+    padding: 40px;
     text-align: center;
+}
+
+.right-panel {
+    width: 50%;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.right-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 h1 {
-    margin-bottom: 20px;
-    font-size: 26px;
-    color: #444;
-    text-align: center;
-}
-
-.card {
-    padding: 30px;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-label {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-    display: block;
-    margin-bottom: 5px;
+    gap: 15px;
 }
 
 input {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
-    margin: 0 auto;
-    display: block;
-}
-
-input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 button {
@@ -81,19 +74,29 @@ button:hover {
     background: #0056b3;
 }
 
-a {
-    display: block;
-    margin-top: 20px;
-    text-decoration: none;
+.forgot-password {
+    text-align: right;
+    font-size: 14px;
     color: #007bff;
-    font-weight: bold;
-    text-align: center;
+    text-decoration: none;
 }
 
-a:hover {
+.forgot-password:hover {
     text-decoration: underline;
 }
 
-#ad1 {
+.register {
     text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register a:hover {
+    text-decoration: underline;
 }

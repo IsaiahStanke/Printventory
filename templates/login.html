@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static\css\login.css">
     <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="{{ url_for('static', filename='surprise.js') }}"></script>
 </head>
 <body>
-    
-    <div class="card">
-        <h2 id="ad1">Login</h2>
-        <form action="/login" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Login</button>
-            <a id="ad2" href="{{url_for('register')}}">Register</a>
-        </form>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Login</h1>
+            <form action="/login" method="POST">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <a href="#" class="forgot-password">Forgot password?</a>
+                <button type="submit">Login</button>
+            </form>
+            <div class="register">Don't have an account? <a href="{{ url_for('register') }}">Sign up</a></div>
+        </div>
+        <div class="right-panel">
+            <img src="{{ url_for('static', filename='Printventory Logo.webp') }}" alt="Illustration" width="300">
+        </div>
     </div>
-    
-
 </body>
 </html>
