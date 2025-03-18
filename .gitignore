@@ -8,3 +8,5 @@ venv/
 # Ignore SQLite database and instance files
 instance/
 *.sqlite
+
+.exe
