@@ -11,17 +11,17 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        
+
         user = User.query.filter_by(username=username).first()
 
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
 
-            # Redirect to password change if required
+            # ✅ Redirect to change password if required
             if user.must_change_password:
                 return redirect(url_for('auth.change_password'))
             
-            return redirect(url_for('auth.dashboard'))
+            return redirect(url_for('main.dashboard'))
         
         flash('Invalid username or password')
     

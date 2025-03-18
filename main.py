@@ -1,5 +1,5 @@
 from flask import render_template
-from __init__ import create_app  # Import from the same directory
+from __init__ import create_app
 
 app = create_app()
 
@@ -8,4 +8,5 @@ def index():
     return render_template('login.html')
 
 if __name__ == '__main__':
+    print("🌍 Running Flask App...")
     app.run(debug=True)

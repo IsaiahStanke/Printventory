@@ -67,7 +67,7 @@ button {
     background: #007bff;
     color: white;
     transition: 0.3s;
-    width: 108%;
+    width: 107%;
 }
 
 button:hover {
@@ -79,6 +79,7 @@ button:hover {
     font-size: 14px;
     color: #007bff;
     text-decoration: none;
+    padding-left: 30px;
 }
 
 .forgot-password:hover {
