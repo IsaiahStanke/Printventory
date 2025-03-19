@@ -1,13 +1,11 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-
-db = SQLAlchemy()
+from __init__ import db  # ✅ Import the shared db instance
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
-    must_change_password = db.Column(db.Boolean, default=True)  # Forces password change on first login
+    must_change_password = db.Column(db.Boolean, default=True)
 
 class Printer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
