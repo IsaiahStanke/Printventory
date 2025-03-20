@@ -74,7 +74,7 @@ def create_database_and_user(master_creds, app_password):
         conn.autocommit = True
         cur = conn.cursor()
 
-        # ✅ Create database if it does not exist
+        # Create database if it does not exist
         cur.execute(f"SELECT 1 FROM pg_database WHERE datname = '{DB_NAME}';")
         if not cur.fetchone():
             cur.execute(f"CREATE DATABASE {DB_NAME};")
@@ -82,7 +82,7 @@ def create_database_and_user(master_creds, app_password):
         else:
             print(f"Database '{DB_NAME}' already exists.")
 
-        # ✅ Create `printer_user` if it does not exist
+        # Create `printer_user` if it does not exist
         cur.execute(f"SELECT 1 FROM pg_roles WHERE rolname = '{DB_USER}';")
         if not cur.fetchone():
             cur.execute(f"CREATE USER {DB_USER} WITH PASSWORD '{app_password}';")
@@ -91,8 +91,25 @@ def create_database_and_user(master_creds, app_password):
             print(f"User '{DB_USER}' already exists. Updating password...")
             cur.execute(f"ALTER USER {DB_USER} WITH PASSWORD '{app_password}';")
 
-        # ✅ Grant permissions to `printer_user`
+        # Grant privileges to `printer_user`
         cur.execute(f"GRANT ALL PRIVILEGES ON DATABASE {DB_NAME} TO {DB_USER};")
+
+        # Switch to `printer_inventory` and grant schema permissions
+        conn.close()
+        conn = psycopg2.connect(
+            dbname=DB_NAME,
+            user=master_creds["MASTER_USER"],
+            password=master_creds["MASTER_PASSWORD"],
+            host=master_creds["MASTER_HOST"],
+            port=master_creds["MASTER_PORT"]
+        )
+        conn.autocommit = True
+        cur = conn.cursor()
+
+        # Grant `printer_user` full access to the public schema
+        cur.execute(f"GRANT USAGE, CREATE ON SCHEMA public TO {DB_USER};")
+        cur.execute(f"ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO {DB_USER};")
+        cur.execute(f"ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO {DB_USER};")
 
         cur.close()
         conn.close()
@@ -129,7 +146,7 @@ def setup_database(app_password):
 def run_application():
     """Start the Flask application."""
     print("\nStarting the Flask app...")
-    os.system("python main.py")
+    os.system("python app_main.py")
 
 if __name__ == "__main__":
     if platform.system() == "Windows" and not check_postgresql_installed():
@@ -139,7 +156,6 @@ if __name__ == "__main__":
     master_creds = get_master_credentials()
     app_password = getpass.getpass("Enter password for printer_user: ")
 
-    # ✅ Ensure database and user are properly set up
     create_database_and_user(master_creds, app_password)
 
     setup_database(app_password)
